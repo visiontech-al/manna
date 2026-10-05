@@ -7,7 +7,7 @@ place, with no tracking features yet.
 
 ## Stack
 
-- Expo SDK 54 with Dev Client, Expo Router (typed routes)
+- Expo SDK 57 with Dev Client, Expo Router (typed routes)
 - TypeScript (strict), React Compiler enabled
 - Redux Toolkit for global client state (`store/`)
 - TanStack Query for server state
@@ -19,8 +19,11 @@ place, with no tracking features yet.
 npm install
 ```
 
+To open it in Expo Go on a phone (same Wi-Fi), start in Expo Go mode and scan
+the QR code:
+
 ```bash
-npm start
+npx expo start --go
 ```
 
 Native builds (Dev Client):

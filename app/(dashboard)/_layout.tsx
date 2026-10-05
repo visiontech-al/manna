@@ -12,7 +12,7 @@ export default function TabLayout() {
     <PrivateGuard>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+          tabBarActiveTintColor: Colors[colorScheme].tint,
           headerShown: false,
         }}>
         <Tabs.Screen
