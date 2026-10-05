@@ -17,6 +17,9 @@ blank shell: demo login, `PublicGuard` / `PrivateGuard`, and empty tab pages.
   modules call services, never the client.
 - Guards are applied in the route group layouts (`app/(auth)/_layout.tsx`,
   `app/(dashboard)/_layout.tsx`), not per screen.
+- The app follows the device light/dark setting. Colors live in `Colors` in
+  `constants/theme.ts`; components read them with `useThemedStyles` /
+  `useColors` (see `hooks/README.md`). Never hardcode hex colors in components.
 - Login is a stub: `app/(auth)/login.tsx` dispatches demo credentials and does
   not call `AuthService` yet. Auth state is not persisted across restarts.
 

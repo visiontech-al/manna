@@ -1,11 +1,16 @@
 import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
 
+import type { ThemeColors } from '@/constants/theme';
+import { useThemedStyles } from '@/hooks/use-themed-styles';
+
 interface ButtonProps extends PressableProps {
   title: string;
   variant?: 'primary' | 'secondary';
 }
 
 export function Button({ title, variant = 'primary', disabled, style, ...props }: ButtonProps) {
+  const styles = useThemedStyles(createStyles);
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -24,32 +29,33 @@ export function Button({ title, variant = 'primary', disabled, style, ...props }
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    minHeight: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-  },
-  primary: {
-    backgroundColor: '#007AFF',
-  },
-  secondary: {
-    backgroundColor: '#F2F2F7',
-  },
-  disabled: {
-    opacity: 0.6,
-  },
-  pressed: {
-    opacity: 0.85,
-  },
-  label: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  secondaryLabel: {
-    color: '#11181C',
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    button: {
+      minHeight: 48,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 12,
+      paddingHorizontal: 16,
+    },
+    primary: {
+      backgroundColor: colors.primary,
+    },
+    secondary: {
+      backgroundColor: colors.surface,
+    },
+    disabled: {
+      opacity: 0.6,
+    },
+    pressed: {
+      opacity: 0.85,
+    },
+    label: {
+      color: colors.onPrimary,
+      fontSize: 16,
+      fontWeight: '600',
+    },
+    secondaryLabel: {
+      color: colors.text,
+    },
+  });

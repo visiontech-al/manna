@@ -19,4 +19,29 @@ Use `hooks` for:
 ## Examples
 
 - `use-color-scheme.ts` wraps React Native color scheme behavior.
+- `use-colors.ts` returns the theme colors for the active color scheme.
+- `use-themed-styles.ts` builds a component's `StyleSheet` from the theme colors.
 - `use-theme-color.ts` maps the active color scheme to theme tokens.
+
+## Theming
+
+Never hardcode colors in components. Add a token to `Colors` in
+`constants/theme.ts` (both `light` and `dark`), then read it with one of the
+theme hooks:
+
+```tsx
+export function Card() {
+  const styles = useThemedStyles(createStyles);
+
+  return <View style={styles.card} />;
+}
+
+// Outside the component, so the reference is stable.
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    card: { backgroundColor: colors.surface, borderColor: colors.border },
+  });
+```
+
+Use `useColors()` for single values that are not styles, such as
+`placeholderTextColor` or navigator `screenOptions`.

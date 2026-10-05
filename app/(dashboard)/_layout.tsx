@@ -1,18 +1,17 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { Colors } from '@/constants/theme';
 import { PrivateGuard } from '@/guards';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useColors } from '@/hooks/use-colors';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colors = useColors();
 
   return (
     <PrivateGuard>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme].tint,
+          tabBarActiveTintColor: colors.tint,
           headerShown: false,
         }}>
         <Tabs.Screen
