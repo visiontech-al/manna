@@ -18,10 +18,10 @@ Use `hooks` for:
 
 ## Examples
 
-- `use-color-scheme.ts` wraps React Native color scheme behavior.
+- `use-color-scheme.ts` wraps React Native color scheme behavior. It is the one
+  place that decides light or dark, so a future in-app override goes here.
 - `use-colors.ts` returns the theme colors for the active color scheme.
 - `use-themed-styles.ts` builds a component's `StyleSheet` from the theme colors.
-- `use-theme-color.ts` maps the active color scheme to theme tokens.
 
 ## Theming
 
