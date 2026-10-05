@@ -1,0 +1,70 @@
+# Manna
+
+Calorie and macro tracking app for iOS and Android, built with Expo.
+
+The app is currently a blank shell: login, route guards and the tab pages are in
+place, with no tracking features yet.
+
+## Stack
+
+- Expo SDK 54 with Dev Client, Expo Router (typed routes)
+- TypeScript (strict), React Compiler enabled
+- Redux Toolkit for global client state (`store/`)
+- TanStack Query for server state
+- Axios through the single `HttpClient` in `libs/http`
+
+## Get started
+
+```bash
+npm install
+```
+
+```bash
+npm start
+```
+
+Native builds (Dev Client):
+
+```bash
+npm run android
+```
+
+```bash
+npm run ios
+```
+
+The API base URL comes from `EXPO_PUBLIC_API_URL` (defaults to
+`http://localhost:3000`, see `constants/global.ts`). Put it in a local `.env`,
+which is git-ignored.
+
+## Checks
+
+```bash
+npm run typecheck
+```
+
+```bash
+npm run lint
+```
+
+## Structure
+
+```text
+app/          Expo Router routes and layouts only
+  (auth)/       public routes, wrapped in PublicGuard
+  (dashboard)/  protected tab routes, wrapped in PrivateGuard
+modules/      page-level sections extracted from complex screens
+components/   reusable app components; components/ui for generic primitives
+guards/       route access checks and redirects
+services/     typed domain services (BaseService for CRUD resources)
+libs/         third-party wrappers, including the one HTTP client
+store/        Redux Toolkit slices and typed hooks
+hooks/        app-wide hooks
+constants/    static values and theme tokens
+types/        shared API and domain types
+utils/        small pure helpers
+```
+
+Each folder has a `README.md` describing what belongs there. Project rules for
+AI-assisted work live in `.cursor/rules.md`, `.cursor/playbooks.md` and
+`.cursor/anti-patterns.md`.
