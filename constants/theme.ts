@@ -1,27 +1,44 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * App colors for light and dark mode, built from the Manna palette:
+ * maroon #6F1D1B, tan #BB9457, dark brown #432818, copper #99582A, cream #FFE6A7.
+ * Values that are not in the palette are lighter/darker shades of it.
  */
 
 import { DarkTheme, DefaultTheme, type Theme } from 'expo-router';
 import { Platform } from 'react-native';
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const Palette = {
+  maroon: '#6F1D1B',
+  tan: '#BB9457',
+  brown: '#432818',
+  copper: '#99582A',
+  cream: '#FFE6A7',
+};
 
 const lightColors = {
-  text: '#11181C',
-  textSecondary: '#687076',
-  background: '#FFFFFF',
-  surface: '#F2F2F7',
-  border: '#D1D1D6',
-  placeholder: '#8E8E93',
-  primary: '#007AFF',
-  onPrimary: '#FFFFFF',
-  tint: tintColorLight,
-  icon: '#687076',
-  tabIconDefault: '#687076',
-  tabIconSelected: tintColorLight,
+  text: Palette.brown,
+  textSecondary: '#7A5235',
+  background: '#FFF6DF',
+  surface: '#FFFFFF',
+  surfaceMuted: Palette.cream,
+  border: '#EDD6A0',
+  placeholder: '#A88A6A',
+  primary: Palette.maroon,
+  onPrimary: Palette.cream,
+  onPrimaryMuted: '#E7C68A',
+  highlightTrack: '#8F3A35',
+  accent: Palette.tan,
+  onAccent: Palette.brown,
+  danger: Palette.maroon,
+  tint: Palette.maroon,
+  icon: Palette.copper,
+  tabBar: '#FFFFFF',
+  tabIconDefault: '#A88A6A',
+  tabIconSelected: Palette.maroon,
+  protein: Palette.maroon,
+  carbs: Palette.tan,
+  fat: Palette.copper,
+  track: '#F5E3B8',
 };
 
 export type ColorScheme = 'light' | 'dark';
@@ -30,18 +47,29 @@ export type ThemeColors = typeof lightColors;
 export const Colors: Record<ColorScheme, ThemeColors> = {
   light: lightColors,
   dark: {
-    text: '#ECEDEE',
-    textSecondary: '#9BA1A6',
-    background: '#151718',
-    surface: '#232629',
-    border: '#3A3D40',
-    placeholder: '#8E8E93',
-    primary: '#0A84FF',
-    onPrimary: '#FFFFFF',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    text: Palette.cream,
+    textSecondary: '#D4B98A',
+    background: '#24150C',
+    surface: Palette.brown,
+    surfaceMuted: '#553420',
+    border: '#5E3D25',
+    placeholder: '#9C7E5C',
+    primary: Palette.tan,
+    onPrimary: Palette.brown,
+    onPrimaryMuted: '#6B4A2E',
+    highlightTrack: '#A07B47',
+    accent: Palette.copper,
+    onAccent: Palette.cream,
+    danger: '#E8826E',
+    tint: Palette.tan,
+    icon: Palette.tan,
+    tabBar: '#2E1B10',
+    tabIconDefault: '#9C7E5C',
+    tabIconSelected: Palette.tan,
+    protein: '#C9504C',
+    carbs: Palette.tan,
+    fat: '#C77B45',
+    track: '#553420',
   },
 };
 
@@ -52,7 +80,7 @@ export const NavigationThemes: Record<ColorScheme, Theme> = {
       ...DefaultTheme.colors,
       primary: Colors.light.primary,
       background: Colors.light.background,
-      card: Colors.light.background,
+      card: Colors.light.tabBar,
       text: Colors.light.text,
       border: Colors.light.border,
     },
@@ -63,7 +91,7 @@ export const NavigationThemes: Record<ColorScheme, Theme> = {
       ...DarkTheme.colors,
       primary: Colors.dark.primary,
       background: Colors.dark.background,
-      card: Colors.dark.background,
+      card: Colors.dark.tabBar,
       text: Colors.dark.text,
       border: Colors.dark.border,
     },

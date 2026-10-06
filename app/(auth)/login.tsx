@@ -1,112 +1,88 @@
-import { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-} from 'react-native';
-import { Button, Input } from '@/components/ui';
+import { Link } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { Button, Card, Input, Screen } from '@/components/ui';
+import { CONTENT_MAX_WIDTH } from '@/constants/app';
 import type { ThemeColors } from '@/constants/theme';
 import { useThemedStyles } from '@/hooks/use-themed-styles';
-import { setCredentials } from '@/store/redux/slices/auth';
-import { useAppDispatch } from '@/store';
+import { AuthHeader, FormMessage, useLoginForm } from '@/modules/auth';
 
 export default function LoginScreen() {
   const styles = useThemedStyles(createStyles);
-  const dispatch = useAppDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please enter both email and password');
-      return;
-    }
-
-    dispatch(
-      setCredentials({
-        user: {
-          id: '1',
-          email,
-          name: 'Demo User',
-        },
-        tokens: {
-          accessToken: 'demo-access-token',
-          refreshToken: 'demo-refresh-token',
-        },
-      })
-    );
-  };
+  const { values, errors, setField, submit, submitting, formError } = useLoginForm();
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
+    <Screen
+      edges={['top', 'bottom', 'left', 'right']}
+      maxWidth={CONTENT_MAX_WIDTH.auth}
+      contentStyle={styles.content}
     >
-      <View style={styles.content}>
-        <Text style={styles.title}>Manna</Text>
-        <Text style={styles.subtitle}>Sign in to continue</Text>
+      <AuthHeader title="Welcome back" subtitle="Sign in to keep tracking your meals" />
 
-        <View style={styles.form}>
-          <Input
-            variant="default"
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
+      <Card style={styles.form}>
+        <FormMessage message={formError} />
 
-          <Input
-            variant="default"
-            style={styles.inputSpacing}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true}
-          />
+        <Input
+          label="Email"
+          placeholder="you@example.com"
+          value={values.email}
+          onChangeText={(text) => setField('email', text)}
+          error={errors.email}
+          autoCapitalize="none"
+          autoComplete="email"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+          returnKeyType="next"
+        />
 
-          <Button
-            variant="primary"
-            title="Sign In"
-            onPress={handleLogin}
-          />
-        </View>
+        <Input
+          label="Password"
+          placeholder="Your password"
+          value={values.password}
+          onChangeText={(text) => setField('password', text)}
+          error={errors.password}
+          secureTextEntry
+          autoComplete="password"
+          textContentType="password"
+          returnKeyType="go"
+          onSubmitEditing={submit}
+        />
+
+        <Button title="Sign In" onPress={submit} loading={submitting} />
+      </Card>
+
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>New to Manna? </Text>
+        <Link href="/register" style={styles.link}>
+          Create an account
+        </Link>
       </View>
-    </KeyboardAvoidingView>
+    </Screen>
   );
 }
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.background,
-    },
     content: {
-      flex: 1,
       justifyContent: 'center',
       paddingHorizontal: 24,
-    },
-    title: {
-      fontSize: 32,
-      fontWeight: 'bold',
-      color: colors.text,
-      marginBottom: 8,
-    },
-    subtitle: {
-      fontSize: 16,
-      color: colors.textSecondary,
-      marginBottom: 32,
+      gap: 24,
     },
     form: {
-      width: '100%',
       gap: 16,
     },
-    inputSpacing: {
-      marginTop: 0,
+    footer: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+    },
+    footerText: {
+      color: colors.textSecondary,
+      fontSize: 15,
+    },
+    link: {
+      color: colors.primary,
+      fontSize: 15,
+      fontWeight: '700',
     },
   });
-

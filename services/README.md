@@ -26,6 +26,13 @@ Use `services` for:
 - Modules and screens should import domain services from here instead of reaching into transport details.
 - Let callers decide how to show errors; `BaseService` only normalizes errors for services that use its CRUD helpers.
 
+## Local auth
+
+`LocalAuthService` is a device-only stand-in for `AuthService` until the backend
+exists. It stores accounts and the session through `SecureStorage` (`libs/storage`)
+and throws `ServiceError` for wrong credentials or a taken email. Passwords are kept
+in SecureStore as plain text, which is acceptable for a demo only.
+
 ## Example
 
 ```typescript

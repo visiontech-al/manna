@@ -6,6 +6,7 @@ type AuthState = {
   user: User | null;
   tokens: AuthTokens | null;
   isAuthenticated: boolean;
+  /** False until the saved session has been checked on app start. */
   isInitialized: boolean;
 };
 
@@ -18,7 +19,7 @@ const initialState: AuthState = {
   user: null,
   tokens: null,
   isAuthenticated: false,
-  isInitialized: true,
+  isInitialized: false,
 };
 
 const authSlice = createSlice({
@@ -40,8 +41,11 @@ const authSlice = createSlice({
     setAuthInitialized: (state) => {
       state.isInitialized = true;
     },
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { clearCredentials, setAuthInitialized, setCredentials } = authSlice.actions;
+export const { clearCredentials, setAuthInitialized, setCredentials, setUser } = authSlice.actions;
 export const authReducer = authSlice.reducer;

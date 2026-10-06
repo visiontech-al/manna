@@ -1,7 +1,8 @@
 # Manna — working notes for Claude
 
-Calorie and macro tracking app (Expo / React Native, iOS + Android). Currently a
-blank shell: demo login, `PublicGuard` / `PrivateGuard`, and empty tab pages.
+Calorie and macro tracking app (Expo / React Native, iOS + Android). Early stage:
+local (device-only) login/register, `PublicGuard` / `PrivateGuard`, and four tabs
+(Home, Add Meal, All Meals, Account) backed by an in-memory meals slice.
 
 ## Read first
 
@@ -20,8 +21,18 @@ blank shell: demo login, `PublicGuard` / `PrivateGuard`, and empty tab pages.
 - The app follows the device light/dark setting. Colors live in `Colors` in
   `constants/theme.ts`; components read them with `useThemedStyles` /
   `useColors` (see `hooks/README.md`). Never hardcode hex colors in components.
-- Login is a stub: `app/(auth)/login.tsx` dispatches demo credentials and does
-  not call `AuthService` yet. Auth state is not persisted across restarts.
+- There is no backend yet. Login/register go through `LocalAuthService`, which
+  stores accounts and the active session in SecureStore (`libs/storage`), so the
+  session survives restarts. `useAuthBootstrap` restores it on start; auth
+  `isInitialized` stays false until then. `AuthService` is kept for the real API
+  and has the same return shapes.
+- Meals (`store/redux/slices/meals.ts`) are in memory only and cleared on logout.
+- Web is a dev preview only. SecureStore has no web implementation, so
+  `SecureStorage` falls back to memory there (accounts are lost on reload), and
+  `confirm` in `libs/dialog` skips the dialog because `Alert` is a no-op on web.
+  Use `confirm` instead of `Alert.alert` for confirmations.
+- Colors come from the brand palette (maroon, tan, dark brown, copper, cream);
+  see the comment at the top of `constants/theme.ts`.
 
 ## Checks
 

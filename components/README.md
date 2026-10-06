@@ -12,6 +12,10 @@ Use `components` for:
 
 Use `components/ui` only for generic UI primitives such as `Button`, `Input`, `Card`, or `Badge`.
 
+Current primitives: `Button`, `Card`, `Chip`, `EmptyState`, `Input` (with optional
+`label` / `error`), `ProgressBar`, and `Screen` (themed, safe-area and keyboard-safe page
+wrapper).
+
 UI primitives should be reusable building blocks with no feature-specific business logic, API calls, navigation decisions, or hardcoded screen assumptions.
 
 ## Rules when editing this folder

@@ -22,6 +22,9 @@ Use `hooks` for:
   place that decides light or dark, so a future in-app override goes here.
 - `use-colors.ts` returns the theme colors for the active color scheme.
 - `use-themed-styles.ts` builds a component's `StyleSheet` from the theme colors.
+- `use-auth-bootstrap.ts` restores the saved session once on app start (used in
+  `app/_layout.tsx`).
+- `use-form.ts` holds string form fields and validates them with a zod schema.
 
 ## Theming
 

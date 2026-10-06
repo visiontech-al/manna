@@ -2,8 +2,13 @@
 
 Calorie and macro tracking app for iOS and Android, built with Expo.
 
-The app is currently a blank shell: login, route guards and the tab pages are in
-place, with no tracking features yet.
+Early stage, with no backend yet:
+
+- Register / login with accounts stored on the device (SecureStore); the session
+  survives app restarts.
+- Home (calories left, macro progress, today's meals), Add Meal, All Meals (by
+  day, with delete) and Account (profile, daily calorie goal, log out).
+- Logged meals are kept in memory only for now.
 
 ## Stack
 

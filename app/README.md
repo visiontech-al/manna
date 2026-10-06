@@ -9,9 +9,12 @@ Every file and folder inside `app` maps to a route in the application. Route fil
 Folders wrapped in parentheses are route groups. They organize routes without adding that folder name to the URL.
 
 ```text
-app/(auth)/login.tsx        -> /login
-app/(dashboard)/index.tsx   -> /
-app/(dashboard)/explore.tsx -> /explore
+app/(auth)/login.tsx          -> /login
+app/(auth)/register.tsx       -> /register
+app/(dashboard)/index.tsx     -> /
+app/(dashboard)/add-meal.tsx  -> /add-meal
+app/(dashboard)/all-meals.tsx -> /all-meals
+app/(dashboard)/account.tsx   -> /account
 ```
 
 Use route groups to separate different areas of the app, such as public auth screens and protected dashboard screens.
