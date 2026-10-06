@@ -1,6 +1,6 @@
 # Manna
 
-Calorie and macro tracking app for iOS and Android, built with Expo.
+Calorie and macro tracking app for iOS, Android and web, built with Expo.
 
 Early stage, with no backend yet:
 
@@ -9,6 +9,8 @@ Early stage, with no backend yet:
 - Home (calories left, macro progress, today's meals), Add Meal, All Meals (by
   day, with delete) and Account (profile, daily calorie goal, log out).
 - Logged meals are kept in memory only for now.
+- Responsive: bottom tabs on phones, a left sidebar and wider layouts on tablets,
+  browsers and desktop (`npm run web`).
 
 ## Stack
 

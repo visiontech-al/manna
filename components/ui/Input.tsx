@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import {
-  NativeSyntheticEvent,
   StyleProp,
   StyleSheet,
   Text,
   TextInput,
-  TextInputFocusEventData,
   TextInputProps,
   View,
   ViewStyle,
@@ -14,8 +12,6 @@ import {
 import type { ThemeColors } from '@/constants/theme';
 import { useColors } from '@/hooks/use-colors';
 import { useThemedStyles } from '@/hooks/use-themed-styles';
-
-type FocusEvent = NativeSyntheticEvent<TextInputFocusEventData>;
 
 interface InputProps extends TextInputProps {
   variant?: 'default' | 'filled';
@@ -40,12 +36,12 @@ export function Input({
   const styles = useThemedStyles(createStyles);
   const [focused, setFocused] = useState(false);
 
-  const handleFocus = (event: FocusEvent) => {
+  const handleFocus: TextInputProps['onFocus'] = (event) => {
     setFocused(true);
     onFocus?.(event);
   };
 
-  const handleBlur = (event: FocusEvent) => {
+  const handleBlur: TextInputProps['onBlur'] = (event) => {
     setFocused(false);
     onBlur?.(event);
   };

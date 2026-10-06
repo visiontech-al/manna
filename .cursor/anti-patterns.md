@@ -1,8 +1,8 @@
 AVOID THE FOLLOWING AT ALL TIMES:
 
-- window, document, navigator
+- window, document, navigator, localStorage outside `libs/**/*.web.ts` files
 - HTML, CSS, or DOM APIs
-- Web-only libraries
+- Web-only libraries (the app must still run on iOS and Android)
 - Inline styles inside JSX
 - Large business flows inside route files
 - Business logic inside generic UI components

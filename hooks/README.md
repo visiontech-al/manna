@@ -25,6 +25,7 @@ Use `hooks` for:
 - `use-auth-bootstrap.ts` restores the saved session once on app start (used in
   `app/_layout.tsx`).
 - `use-form.ts` holds string form fields and validates them with a zod schema.
+- `use-breakpoint.ts` returns `isWide` / `isDesktop` from the window width.
 
 ## Theming
 

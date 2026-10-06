@@ -9,6 +9,12 @@ Use `libs` for:
 - Hiding vendor-specific APIs behind small app-owned abstractions.
 - Making future library changes easier by limiting direct imports across the app.
 
+## Platform files
+
+When web needs a browser API, add a `*.web.ts` file next to the native one with the
+same exports (Metro resolves it on web). Current pairs: `storage/secure-storage`
+(SecureStore / `localStorage`) and `dialog/confirm` (`Alert` / `window.confirm`).
+
 ## Rules when editing this folder
 
 - No UI components, screens, hooks, navigation, or feature-specific business logic.

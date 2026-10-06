@@ -3,14 +3,15 @@ You are working in a production-grade React Native application.
 PLATFORM
 - Expo with Dev Client
 - Expo Router for navigation
-- Target platforms: iOS and Android only
+- Target platforms: iOS, Android and web (browser / desktop)
 - Route files live in `app`
 - Route groups such as `(auth)` and `(dashboard)` organize routes without changing URLs
 
 LANGUAGE & STYLE
 - TypeScript with strict typing
 - Functional components only
-- No DOM, browser, or web-only APIs
+- No DOM, browser, or web-only APIs in shared code; when web needs one, put it in a
+  `*.web.ts` platform file inside `libs` next to the native version
 - No HTML or CSS
 - No UI libraries unless explicitly requested
 
@@ -39,6 +40,8 @@ QUALITY & PERFORMANCE
 - Avoid unnecessary re-renders
 - Avoid inline styles and inline functions
 - Prefer StyleSheet or extracted styles
+- Layouts must work from phone width up to desktop: use `useBreakpoint` and the
+  `CONTENT_MAX_WIDTH` / `BREAKPOINTS` constants instead of fixed widths
 - Keep files under 300 lines
 - Prefer Expo APIs over custom native code
 

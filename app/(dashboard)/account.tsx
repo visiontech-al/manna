@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Card, Input, Screen } from '@/components/ui';
-import { confirm } from '@/libs/dialog/confirm';
 import { CONTENT_MAX_WIDTH } from '@/constants/app';
 import type { ThemeColors } from '@/constants/theme';
 import { useThemedStyles } from '@/hooks/use-themed-styles';
+import { confirm } from '@/libs/dialog/confirm';
 import { ProfileHeader, useLogout, useProfileForm } from '@/modules/account';
 import { useAppSelector } from '@/store';
 

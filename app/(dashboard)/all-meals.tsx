@@ -2,11 +2,11 @@ import { useRouter } from 'expo-router';
 import { SectionList, SectionListData, StyleSheet, Text, View } from 'react-native';
 
 import { Button, EmptyState, Screen } from '@/components/ui';
-import { confirm } from '@/libs/dialog/confirm';
 import { CONTENT_MAX_WIDTH } from '@/constants/app';
 import type { ThemeColors } from '@/constants/theme';
 import { useBreakpoint } from '@/hooks/use-breakpoint';
 import { useThemedStyles } from '@/hooks/use-themed-styles';
+import { confirm } from '@/libs/dialog/confirm';
 import { MealListItem, MealSection, useMealSections, useRemoveMeal } from '@/modules/meals';
 import type { Meal } from '@/types/meal';
 

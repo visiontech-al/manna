@@ -1,6 +1,6 @@
 # Manna — working notes for Claude
 
-Calorie and macro tracking app (Expo / React Native, iOS + Android). Early stage:
+Calorie and macro tracking app (Expo / React Native, iOS + Android + web). Early stage:
 local (device-only) login/register, `PublicGuard` / `PrivateGuard`, and four tabs
 (Home, Add Meal, All Meals, Account) backed by an in-memory meals slice.
 
@@ -27,10 +27,13 @@ local (device-only) login/register, `PublicGuard` / `PrivateGuard`, and four tab
   `isInitialized` stays false until then. `AuthService` is kept for the real API
   and has the same return shapes.
 - Meals (`store/redux/slices/meals.ts`) are in memory only and cleared on logout.
-- Web is a dev preview only. SecureStore has no web implementation, so
-  `SecureStorage` falls back to memory there (accounts are lost on reload), and
-  `confirm` in `libs/dialog` skips the dialog because `Alert` is a no-op on web.
-  Use `confirm` instead of `Alert.alert` for confirmations.
+- Web/desktop is supported. Browser-only code lives in `libs/**/*.web.ts` files
+  (Metro picks them on web): `secure-storage.web.ts` uses `localStorage` (not
+  encrypted), `confirm.web.ts` uses `window.confirm`. Use `confirm` from
+  `libs/dialog` instead of `Alert.alert`, which is a no-op on web.
+- Responsive layout: `useBreakpoint` (`isWide` >= 768, `isDesktop` >= 1100).
+  `Screen` centers content at `CONTENT_MAX_WIDTH`; the dashboard tabs become a
+  left sidebar on wide screens.
 - Colors come from the brand palette (maroon, tan, dark brown, copper, cream);
   see the comment at the top of `constants/theme.ts`.
 
